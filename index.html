@@ -4,34 +4,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODOList</title>
+    <title>TP02</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <script src="script.js"> </script>
     <div>  
-        <input type="text" id= "nuevoProyecto" placeholder="Ingrese un nuevo proyecto"/>
+        <h1> Crear Proyecto:</h1>
 
-
-            
-
-            
-        
-        <input type="text" id="descripcion" placeholder="Ingrese una breve descripcion">
+        <p>Titulo: </p>
+        <input type="text" id= "nuevoProyecto"/><br>
+        <p>Descripcion:</p>
+        <input type="text" id="descripcion"><br><br>
 
         <button onclick = "CrearProyecto()">
             Crea un proyecto
         </button>
-
-
-        <div class="Proyectos" id="proyectos">
-
-                <div id="tarea1">
-                    <h1></h1>
-                    <p></p>
-                </div>
-        </div> 
-            
     </div>
+    <br><br>
+    <div>
+        <h1> Crear Tarea</h1>
+
+        <p>Titulo: </p>
+        <input type="text" id= "nuevoProyecto"/><br>
+        <p>Descripcion:</p>
+        <input type="text" id="descripcion"><br><br>
+
+        <select name="select" id="select" onclick="ListarArray()">
+
+
+            <option value="value1">Value 1</option>
+        </select><br><br>
+        
+
+
+        <button onclick = "CrearTareas()">
+            Crea una Tarea
+        </button>
+
+
+    </div>
+        
+    
+    
+
+
+    <div class="Proyectos" id="proyectos">
+        
+            <div id="tarea1">
+                <h1></h1>
+                <p></p>
+            </div>
+    </div> 
+            
 
 
 
