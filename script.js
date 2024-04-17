@@ -13,40 +13,32 @@ function CrearProyecto()
     {
         nombreProyecto: nombreProyecto,
         descripcionProyecto: descripcionProyecto,
+        ArrayTarea: []
     }
 
 
     ArrayProyectos.push(ObjProyecto)
-
-    var contenedor = document.querySelector(".Proyectos");
+    ListarArray()
+    
+    
+    contenedor = document.querySelector(".Proyectos");
+    
 
     let titulo = document.createElement("h1")
     let descripcion = document.createElement("p")
-    let check = document.createElement("input")
-    check.type = 'checkbox';
+
     titulo.style.display="inline";
     descripcion.style.paddingLeft="3vw"
     titulo.style.paddingTop="5vw"
 
-    check.addEventListener('change', function()
-    {
-        if(check.checked)
-        {
-            titulo.style.textDecoration = "line-through";
-        }
-        else
-        {
-            titulo.style.textDecoration = "none";
-        }
-        
-    })
+    
 
     for(let i = 0; i<ArrayProyectos.length; i++)
     {
         titulo.innerHTML = ArrayProyectos[i].nombreProyecto;
         descripcion.innerHTML = ArrayProyectos[i].descripcionProyecto;
 
-        contenedor.appendChild(check)
+
         contenedor.appendChild(titulo)
         contenedor.appendChild(descripcion)
     }
@@ -57,47 +49,60 @@ function CrearProyecto()
 function CrearTarea() {
     const nombreTarea = document.getElementById("nuevaTarea").value;
     const proyectoSeleccionado = document.getElementById("Dropdown").value;
-    console.log(proyectoSeleccionado)
 
     const proyecto = ArrayProyectos.findIndex(proyecto => proyecto.nombreProyecto === proyectoSeleccionado);
     
     
     let ArrayTarea =  
     [
-        nombre = "hola"
+        nombre = proyectoSeleccionado
     ]
-
-    ArrayProyectos[proyecto].push(ArrayTarea)   
-
-        
     
+    console.log(ArrayProyectos[proyecto])
 
-
-    ArrayProyectos.push(ObjProyecto)
-
-    
-    console.log(ArrayProyectos)
+    ArrayProyectos[proyecto].ArrayTarea.push(ArrayTarea)
 
     let tituloTarea = document.createElement("p");
     tituloTarea.innerHTML = nombreTarea;
-    let contenedorTareas = document.querySelector(".Tareas");
+    
+    let check = document.createElement("input")
+    tituloTarea.style.display="inline";
+    check.type = 'checkbox';
 
-    contenedorTareas.appendChild(tituloTarea);
+
+
+    check.addEventListener('change', function()
+    {
+        if(check.checked)
+        {
+            tituloTarea.style.textDecoration = "line-through";
+        }
+        else
+        {
+            tituloTarea.style.textDecoration = "none";
+        }
+        
+    })
+    contenedor.appendChild(check)
+    contenedor.appendChild(tituloTarea);
+
 }
 
 
-var opcion
+
 function ListarArray()
 {
+
     var dropdown = document.getElementById("Dropdown")
-    dropdown.innerHTML = "";
+    dropdown.innerHTML = ""
+
 
     ArrayProyectos.forEach(function(ObjProyecto)
     {
-        opcion = document.createElement("option")
+        const opcion = document.createElement('option')
         opcion.text = ObjProyecto.nombreProyecto;
+
         dropdown.add(opcion)
     })
-
-    
 }
+
