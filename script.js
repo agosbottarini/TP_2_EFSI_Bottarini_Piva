@@ -1,15 +1,18 @@
 let ArrayProyectos = []
+let ObjProyecto
+{
+
+}
 function CrearProyecto()
 {
     const nombreProyecto = document.getElementById("nuevoProyecto").value;
     const descripcionProyecto = document.getElementById("descripcion").value;
 
 
-    let ObjProyecto = 
+    ObjProyecto = 
     {
         nombreProyecto: nombreProyecto,
         descripcionProyecto: descripcionProyecto,
-        ObjTarea: null
     }
 
 
@@ -48,29 +51,40 @@ function CrearProyecto()
         contenedor.appendChild(descripcion)
     }
     
-    return ArrayProyectos;
+
 }
 
-function CrearTarea()
-{
-    console.log(opcion)
+function CrearTarea() {
     const nombreTarea = document.getElementById("nuevaTarea").value;
+    const proyectoSeleccionado = document.getElementById("Dropdown").value;
+    console.log(proyectoSeleccionado)
 
+    const proyecto = ArrayProyectos.findIndex(proyecto => proyecto.nombreProyecto === proyectoSeleccionado);
+    
+    
+    let ArrayTarea =  
+    [
+        nombre = "hola"
+    ]
 
-    let ObjTareas = 
-    {
-        nombreTarea: nombreTarea
+    ArrayProyectos[proyecto].push(ArrayTarea)   
 
-    }
-
-    ArrayProyectos.find((opcion) => opcion === ObjProyecto.nombreProyecto);
         
     
-    console.log(ArrayProyectos);
-    let tituloTarea = document.createElement("h1")
 
 
+    ArrayProyectos.push(ObjProyecto)
+
+    
+    console.log(ArrayProyectos)
+
+    let tituloTarea = document.createElement("p");
+    tituloTarea.innerHTML = nombreTarea;
+    let contenedorTareas = document.querySelector(".Tareas");
+
+    contenedorTareas.appendChild(tituloTarea);
 }
+
 
 var opcion
 function ListarArray()
