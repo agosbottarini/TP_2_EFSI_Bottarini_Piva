@@ -1,16 +1,18 @@
+let ArrayProyectos = []
 function CrearProyecto()
 {
     const nombreProyecto = document.getElementById("nuevoProyecto").value;
     const descripcionProyecto = document.getElementById("descripcion").value;
 
 
-    const ObjProyecto = 
+    let ObjProyecto = 
     {
         nombreProyecto: nombreProyecto,
-        descripcionProyecto: descripcionProyecto
+        descripcionProyecto: descripcionProyecto,
+        ObjTarea: null
     }
 
-    let ArrayProyectos = []
+
     ArrayProyectos.push(ObjProyecto)
 
     var contenedor = document.querySelector(".Proyectos");
@@ -44,18 +46,44 @@ function CrearProyecto()
         contenedor.appendChild(check)
         contenedor.appendChild(titulo)
         contenedor.appendChild(descripcion)
+    }
+    
+    return ArrayProyectos;
+}
+
+function CrearTarea()
+{
+    console.log(opcion)
+    const nombreTarea = document.getElementById("nuevaTarea").value;
 
 
+    let ObjTareas = 
+    {
+        nombreTarea: nombreTarea
 
     }
+
+    ArrayProyectos.find((opcion) => opcion === ObjProyecto.nombreProyecto);
+        
+    
+    console.log(ArrayProyectos);
+    let tituloTarea = document.createElement("h1")
 
 
 }
 
+var opcion
 function ListarArray()
 {
+    var dropdown = document.getElementById("Dropdown")
+    dropdown.innerHTML = "";
 
-    let valor = document.createElement("option");
+    ArrayProyectos.forEach(function(ObjProyecto)
+    {
+        opcion = document.createElement("option")
+        opcion.text = ObjProyecto.nombreProyecto;
+        dropdown.add(opcion)
+    })
 
-    valor.innerHTML = "hola" 
+    
 }
