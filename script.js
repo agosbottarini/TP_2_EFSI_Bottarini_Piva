@@ -3,6 +3,7 @@ let ObjProyecto
 {
 
 }
+let contenedor;
 function CrearProyecto()
 {
     const nombreProyecto = document.getElementById("nuevoProyecto").value;
@@ -23,6 +24,7 @@ function CrearProyecto()
     
     contenedor = document.querySelector(".Proyectos");
     
+    
 
     let titulo = document.createElement("h1")
     let descripcion = document.createElement("p")
@@ -33,15 +35,23 @@ function CrearProyecto()
 
     
 
-    for(let i = 0; i<ArrayProyectos.length; i++)
-    {
-        titulo.innerHTML = ArrayProyectos[i].nombreProyecto;
-        descripcion.innerHTML = ArrayProyectos[i].descripcionProyecto;
+    
 
+    
+    for(let i = 0; i < ArrayProyectos.length; i++)
+{
+    let proyectoContainer = document.createElement("div");
+    proyectoContainer.id = `proyecto-${i}`;
+    titulo.innerHTML = ArrayProyectos[i].nombreProyecto;
+    descripcion.innerHTML = ArrayProyectos[i].descripcionProyecto;
 
-        contenedor.appendChild(titulo)
-        contenedor.appendChild(descripcion)
-    }
+    proyectoContainer.style.display = "flex"
+    proyectoContainer.style.flexDirection = "column"
+
+    proyectoContainer.appendChild(titulo);
+    proyectoContainer.appendChild(descripcion);
+    contenedor.appendChild(proyectoContainer);
+}
     
 
 }
@@ -50,42 +60,47 @@ function CrearTarea() {
     const nombreTarea = document.getElementById("nuevaTarea").value;
     const proyectoSeleccionado = document.getElementById("Dropdown").value;
 
-    const proyecto = ArrayProyectos.findIndex(proyecto => proyecto.nombreProyecto === proyectoSeleccionado);
-    
-    
-    let ArrayTarea =  
-    [
-        nombre = proyectoSeleccionado
-    ]
-    
-    console.log(ArrayProyectos[proyecto])
+    const proyectoIndex = ArrayProyectos.findIndex(proyecto => proyecto.nombreProyecto === proyectoSeleccionado);
 
-    ArrayProyectos[proyecto].ArrayTarea.push(ArrayTarea)
+    let nuevaTarea = {
+        nombre: nombreTarea,
+        estado: "pendiente"
+    };
+
+    ArrayProyectos[proyectoIndex].ArrayTarea.push(nuevaTarea);
 
     let tituloTarea = document.createElement("p");
     tituloTarea.innerHTML = nombreTarea;
-    
-    let check = document.createElement("input")
-    tituloTarea.style.display="inline";
+
+    let check = document.createElement("input");
     check.type = 'checkbox';
 
-
-
-    check.addEventListener('change', function()
-    {
-        if(check.checked)
-        {
+    check.addEventListener('change', function() {
+        if (check.checked) {
             tituloTarea.style.textDecoration = "line-through";
-        }
-        else
-        {
+            nuevaTarea.estado = "completado";
+            TacharProyecto(proyectoIndex);
+        } else {
             tituloTarea.style.textDecoration = "none";
+            nuevaTarea.estado = "pendiente";
+            TacharProyecto(proyectoIndex);
         }
-        
-    })
-    contenedor.appendChild(check)
-    contenedor.appendChild(tituloTarea);
+    });
 
+    contenedor.appendChild(check);
+    contenedor.appendChild(tituloTarea);
+}
+
+function TacharProyecto(proyectoIndex) {
+    let proyectoElement = contenedor.querySelector(`#proyecto-${proyectoIndex}`);
+    let todasCompletadas = ArrayProyectos[proyectoIndex].ArrayTarea.every(tarea => tarea.estado === "completado");
+
+    if (todasCompletadas) {
+        proyectoElement.style.textDecoration = "line-through";
+        
+    } else { 
+        proyectoElement.style.textDecoration = "none";
+    }
 }
 
 
@@ -105,4 +120,5 @@ function ListarArray()
         dropdown.add(opcion)
     })
 }
+
 
