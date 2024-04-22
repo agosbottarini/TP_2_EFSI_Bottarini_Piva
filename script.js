@@ -58,11 +58,13 @@ function CrearProyecto()
 
 function CrearTarea() {
     const nombreTarea = document.getElementById("nuevaTarea").value;
+    const inputFecha = document.getElementById("fechaIngresada").value;
     const proyectoSeleccionado = document.getElementById("Dropdown").value;
 
     const proyectoIndex = ArrayProyectos.findIndex(proyecto => proyecto.nombreProyecto === proyectoSeleccionado);
 
     let nuevaTarea = {
+        fechaVencimiento: inputFecha,
         nombre: nombreTarea,
         estado: "pendiente"
     };
@@ -71,6 +73,8 @@ function CrearTarea() {
 
     let tituloTarea = document.createElement("p");
     tituloTarea.innerHTML = nombreTarea;
+    let fechaVencimiento = document.createElement("p")
+    fechaVencimiento.innerHTML = inputFecha;
 
     let check = document.createElement("input");
     check.type = 'checkbox';
@@ -89,6 +93,8 @@ function CrearTarea() {
 
     contenedor.appendChild(check);
     contenedor.appendChild(tituloTarea);
+    contenedor.appendChild(fechaVencimiento);
+    console.log(ArrayProyectos)
 }
 
 function TacharProyecto(proyectoIndex) {
@@ -121,4 +127,19 @@ function ListarArray()
     })
 }
 
+function BuscarTarea() {
+    let contenedor = document.querySelector(".TareasFecha");
+    contenedor.innerHTML = ""; 
 
+    const fechaBuscada = document.getElementById("fechaTareaBuscada").value;
+
+    ArrayProyectos.forEach(function(proyecto) {
+        proyecto.ArrayTarea.forEach(function(tarea) {
+            if (tarea.fechaVencimiento == fechaBuscada) {
+                let tareaElement = document.createElement("div");
+                tareaElement.innerHTML = tarea.nombre;
+                contenedor.appendChild(tareaElement);
+            }
+        });
+    });
+}

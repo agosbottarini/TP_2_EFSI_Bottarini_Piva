@@ -33,20 +33,31 @@
         <select id="Dropdown"> </select><br><br>
         
 
-       <!-- 
-        <form class="ulpgcds-form">
-            <div class="ulpgcds-form__item">
-                 <label for="fecha-datepicker-1">Selecciona una fecha</label> 
-                 <input autocomplete="off" class="ulpgcds-datepicker" id="fecha-datepicker-1" name="fecha" type="text" value=""  placeholder="dd/mm/aaaa" />
-            </div>
-       </form> <br><br>
-        -->
+
+                 
+        <input id="fechaIngresada" type="text"   placeholder="dd/mm/aaaa" />
+
 
 
         <button onclick = "CrearTarea()">
             Crea una Tarea
         </button> <br><br>
 
+
+    </div>
+
+    <div>  
+        <h1> Buscar proyecto por fecha</h1>
+
+        <p>Ingrese la fecha de vencimiento </p>
+        <input type="text" id= "fechaTareaBuscada"/><br>
+
+        <button onclick = "BuscarTarea()">
+            Enviar
+        </button>
+    </div>
+
+    <div class="TareasFecha" id ="tareasfecha">
 
     </div>
          
