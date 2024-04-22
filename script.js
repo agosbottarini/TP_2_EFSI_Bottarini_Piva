@@ -28,14 +28,11 @@ function CrearProyecto()
 
     let titulo = document.createElement("h1")
     let descripcion = document.createElement("p")
+   
 
     titulo.style.display="inline";
-    descripcion.style.paddingLeft="3vw"
-    titulo.style.paddingTop="5vw"
+    titulo.style.paddingTop="5vw";
 
-    
-
-    
 
     
     for(let i = 0; i < ArrayProyectos.length; i++)
@@ -43,7 +40,7 @@ function CrearProyecto()
     let proyectoContainer = document.createElement("div");
     proyectoContainer.id = `proyecto-${i}`;
     titulo.innerHTML = ArrayProyectos[i].nombreProyecto;
-    descripcion.innerHTML = ArrayProyectos[i].descripcionProyecto;
+    descripcion.innerHTML = "Descripcion: " + ArrayProyectos[i].descripcionProyecto;
 
     proyectoContainer.style.display = "flex"
     proyectoContainer.style.flexDirection = "column"
@@ -74,7 +71,10 @@ function CrearTarea() {
     let tituloTarea = document.createElement("p");
     tituloTarea.innerHTML = nombreTarea;
     let fechaVencimiento = document.createElement("p")
-    fechaVencimiento.innerHTML = inputFecha;
+    fechaVencimiento.style.paddingTop = "1vw";
+    fechaVencimiento.innerHTML = "Fecha de vencimiento: " + inputFecha;
+
+    tituloTarea.style.display="inline";
 
     let check = document.createElement("input");
     check.type = 'checkbox';
